@@ -1,4 +1,11 @@
 package guru.springframework.spring6restmvc.mapper;
 
-public class BeerMapper {
+import guru.springframework.spring6restmvc.entities.Beer;
+import guru.springframework.spring6restmvc.model.BeerDTO;
+import org.mapstruct.Mapper;
+
+@Mapper
+public interface BeerMapper {
+    Beer beerDtoToBeer(BeerDTO beerDTO);
+    BeerDTO beerToBeerDtoMapper(Beer beer);
 }
