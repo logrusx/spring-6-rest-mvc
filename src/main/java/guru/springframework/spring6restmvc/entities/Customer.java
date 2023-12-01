@@ -24,7 +24,10 @@ public class Customer {
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
+
     private String customerName;
+
+    private String email;
 
     @Version
     private Integer version;

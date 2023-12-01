@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import guru.springframework.spring6restmvc.entities.Beer;
 import guru.springframework.spring6restmvc.mapper.BeerMapper;
 import guru.springframework.spring6restmvc.model.BeerDTO;
+import guru.springframework.spring6restmvc.model.BeerStyle;
 import guru.springframework.spring6restmvc.repository.BeerRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -123,6 +124,8 @@ class BeerControllerIT {
     void testSaveNewBeer() {
         BeerDTO beerDTO = BeerDTO.builder()
                 .beerName("New Beer")
+                .beerStyle(BeerStyle.GOSE)
+                .upc("2131")
                 .build();
 
         ResponseEntity responseEntity = beerController.handlePost(beerDTO);

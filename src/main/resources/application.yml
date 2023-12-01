@@ -12,3 +12,6 @@ logging:
 #              create-sources: metadata
 #              drop-target: drop-and-create.sql
 #              create-target: drop-and-create.sql
+spring:
+  flyway:
+    enabled: false

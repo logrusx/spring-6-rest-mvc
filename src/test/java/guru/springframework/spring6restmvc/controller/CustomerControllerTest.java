@@ -58,8 +58,9 @@ class CustomerControllerTest {
         Map<String, Object> custMap = new HashMap<>();
         custMap.put("customerName", "New Name");
 
+        given(customerService.patchCustomerByID(any(UUID.class), any(CustomerDTO.class))).willReturn(Optional.of(testCustomer));
+
         mockMvc.perform(patch(CustomerController.CUSTOMER_PATH_ID, testCustomer.getId())
-                .accept(MediaType.APPLICATION_JSON)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(custMap)))
                 .andExpect(status().isNoContent());

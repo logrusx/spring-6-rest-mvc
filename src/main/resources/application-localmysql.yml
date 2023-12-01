@@ -7,6 +7,8 @@ spring:
     hikari:
       pool-name: RestDB-Pool
       maximum-pool-size: 5
+#      data-source-properties:
+#        ...
 
   jpa:
     database: mysql
@@ -16,8 +18,15 @@ spring:
 #        show_sql: true
 #        format_sql: true
     hibernate:
-      ddl-auto: update
-    defer-datasource-initialization: true
+      ddl-auto: validate
+#    defer-datasource-initialization: false
+  flyway:
+    #    locations: filesystem:flyfiles
+    enabled: true
+#    depends-on: entityManagerFactoryfilesystem:sql
+#  main:
+#    allow-circular-references: true
+
 #logging:
 #  level:
 #    org.hibernate.orm.jdbc.bind: trace
