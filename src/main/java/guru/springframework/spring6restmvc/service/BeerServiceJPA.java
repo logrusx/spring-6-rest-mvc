@@ -1,7 +1,7 @@
 package guru.springframework.spring6restmvc.service;
 
 import guru.springframework.spring6restmvc.controller.NotFoundException;
-import guru.springframework.spring6restmvc.entities.Beer;
+import guru.springframework.spring6restmvc.entity.Beer;
 import guru.springframework.spring6restmvc.mapper.BeerMapper;
 import guru.springframework.spring6restmvc.model.BeerDTO;
 import guru.springframework.spring6restmvc.repository.BeerRepository;

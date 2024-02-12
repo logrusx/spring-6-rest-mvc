@@ -1,13 +1,12 @@
-package guru.springframework.spring6restmvc.entities;
+package guru.springframework.spring6restmvc.entity;
 
 import guru.springframework.spring6restmvc.model.BeerStyle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.annotations.*;
 import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
@@ -35,8 +34,8 @@ public class Beer {
 
     @NonNull
     @NotBlank
-    @Size(max = 20)
-    @Column(length = 20)
+    @Size(max = 50)
+    @Column(length = 50)
     private String beerName;
 
     @NonNull
@@ -46,7 +45,13 @@ public class Beer {
     @NotBlank
     private String upc;
     private Integer quantityOnHand;
+
+    @NotNull
     private BigDecimal price;
+
+    @CreationTimestamp
     private LocalDateTime createdDate;
+
+    @UpdateTimestamp
     private LocalDateTime updateDate;
 }

@@ -1,6 +1,6 @@
 package guru.springframework.spring6restmvc.repository;
 
-import guru.springframework.spring6restmvc.entities.Beer;
+import guru.springframework.spring6restmvc.entity.Beer;
 import guru.springframework.spring6restmvc.model.BeerStyle;
 import jakarta.validation.ConstraintViolationException;
 import org.junit.jupiter.api.BeforeEach;
@@ -70,7 +70,7 @@ class BeerRepositoryTest {
     void testSaveBeerNameTooLong() {
         assertThrows(ConstraintViolationException.class, () -> {
                 beerRepository.save(Beer.builder()
-                .beerName("My               Beer")
+                .beerName("My                                             Beer")
                 .beerStyle(BeerStyle.GOSE)
                 .price(new BigDecimal(100))
                 .upc("UPC")

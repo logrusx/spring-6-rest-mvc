@@ -1,7 +1,7 @@
 package guru.springframework.spring6restmvc.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import guru.springframework.spring6restmvc.entities.Beer;
+import guru.springframework.spring6restmvc.entity.Beer;
 import guru.springframework.spring6restmvc.mapper.BeerMapper;
 import guru.springframework.spring6restmvc.model.BeerDTO;
 import guru.springframework.spring6restmvc.model.BeerStyle;
@@ -13,6 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@ActiveProfiles("TEST")
 @SpringBootTest
 class BeerControllerIT {
 
@@ -59,7 +61,7 @@ class BeerControllerIT {
     void testPatchBeerBadName() throws Exception {
         Beer testBeer = beerRepository.findAll().get(0);
 
-        Map<String, Object> beerMap = Map.of("beerName", "really long beer name that should break validation");
+        Map<String, Object> beerMap = Map.of("beerName", "really long beer name that should break validation aaaaaa");
 
         var result = mockMvc.perform(patch(BeerController.BEER_PATH_ID, testBeer.getId())
                         .accept(MediaType.APPLICATION_JSON)
