@@ -115,6 +115,11 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
+    public List<BeerDTO> listBeersByName(String beerName) {
+        return beerMap.values().stream().filter(b -> b.getBeerName().equals(beerName)).toList();
+    }
+
+    @Override
     public Optional<BeerDTO> patchBeerById(UUID beerId, BeerDTO beer) {
         BeerDTO existing = beerMap.get(beerId);
 
@@ -142,5 +147,20 @@ public class BeerServiceImpl implements BeerService {
             return Optional.of(existing);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public List<BeerDTO> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle) {
+        return beerMap.values().stream()
+                .filter(b -> b.getBeerName().contains(beerName)
+                        && beerStyle == b.getBeerStyle())
+                .toList();
+    }
+
+    @Override
+    public List<BeerDTO> listBeersByStyle(BeerStyle beerStyle) {
+        return beerMap.values().stream()
+                .filter(b -> beerStyle == b.getBeerStyle())
+                .toList();
     }
 }

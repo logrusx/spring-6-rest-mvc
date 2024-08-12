@@ -37,4 +37,6 @@ public class CustomErrorController {
         List errorList = exception.getFieldErrors().stream().map(fieldError -> Map.of(fieldError.getField(), fieldError.getDefaultMessage())).toList();
         return ResponseEntity.badRequest().body(errorList);
     }
+
+
 }

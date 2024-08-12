@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -51,6 +52,13 @@ class BeerRepositoryTest {
                 .build());
 
 
+    }
+
+    @Test
+    void testGetBeerListByName() {
+        List<Beer> beers = beerRepository.findBeersByBeerNameContaining("ank");
+
+        assertThat(beers.size()).isEqualTo(1);
     }
 
     @Test

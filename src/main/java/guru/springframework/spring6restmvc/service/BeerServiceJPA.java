@@ -4,6 +4,7 @@ import guru.springframework.spring6restmvc.controller.NotFoundException;
 import guru.springframework.spring6restmvc.entity.Beer;
 import guru.springframework.spring6restmvc.mapper.BeerMapper;
 import guru.springframework.spring6restmvc.model.BeerDTO;
+import guru.springframework.spring6restmvc.model.BeerStyle;
 import guru.springframework.spring6restmvc.repository.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -27,6 +28,14 @@ public class BeerServiceJPA implements BeerService {
         return beerRepository
                 .findById(id)
                 .map(beerMapper::beerToBeerDtoMapper);
+    }
+
+    @Override
+    public List<BeerDTO> listBeersByName(String beerName) {
+        return beerRepository.findBeersByBeerNameContaining(beerName)
+                .stream()
+                .map(beerMapper::beerToBeerDtoMapper)
+                .toList();
     }
 
     @Override
@@ -88,5 +97,19 @@ public class BeerServiceJPA implements BeerService {
             ref.set(Optional.of(beerMapper.beerToBeerDtoMapper(beerRepository.save(existing))));
         }, () -> ref.set(Optional.empty()));
         return ref.get();
+    }
+
+    @Override
+    public List<BeerDTO> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle) {
+        return beerRepository.findBeersByBeerNameContainingAndBeerStyle(beerName, beerStyle).stream()
+                .map(beerMapper::beerToBeerDtoMapper)
+                .toList();
+    }
+
+    @Override
+    public List<BeerDTO> listBeersByStyle(BeerStyle beerStyle) {
+        return beerRepository.findBeersByBeerStyle(beerStyle).stream()
+                .map(beerMapper::beerToBeerDtoMapper)
+                .toList();
     }
 }
